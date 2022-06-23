@@ -245,7 +245,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*":
+"@types/node@npm:*, @types/node@npm:^18.0.0":
   version: 18.0.0
   resolution: "@types/node@npm:18.0.0"
   checksum: aab2b325727a2599f6d25ebe0dedf58c40fb66a51ce4ca9c0226ceb70fcda2d3afccdca29db5942eb48b158ee8585a274a1e3750c718bbd5399d7f41d62dfdcc
@@ -2086,6 +2086,7 @@ __metadata:
   dependencies:
     "@types/cors": ^2
     "@types/express": ^4
+    "@types/node": ^18.0.0
     axios: ^0.27.2
     cors: ^2.8.5
     envalid: ^7.3.1
