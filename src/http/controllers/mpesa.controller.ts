@@ -4,7 +4,7 @@ import { STK } from '../../repositories/STK';
 import { StkCallback } from '../../entities/models/StkCallback';
 
 export const MpesaController = {
-    initiateStk   : async ({body}, res) => {
+    initiateStk: async ({body}, res) => {
         const {phone, amount, reference, relation_id, description} = body;
 
         STK.push({phone, amount, reference, relation_id, description}).then(request => {
@@ -17,15 +17,22 @@ export const MpesaController = {
             res.status(400).send(err.message);
         });
     },
-    stkCallback   : async ({body}, res) => {
+
+    stkCallback: async ({body}, res) => {
         console.log('Callback 2: ', body);
 
-        const {stkCallback} = body;
+        const {Body: {stkCallback}} = body;
 
-        // await setDoc(doc(db, "stk_callbacks", stkCallback.CheckoutRequestID), stkCallback);
+        await StkCallback.save({
+            checkout_request_id: stkCallback.CheckoutRequestID,
+            merchant_request_id: stkCallback.MerchantRequestID,
+            result_code        : stkCallback.ResultCode,
+            result_desc        : stkCallback.ResultDesc,
+        });
 
         res.send({});
     },
+
     queryStkStatus: async (req, res) => {
         const repo = AppDataSource.getRepository(StkRequest).createQueryBuilder('requests');
         const stk = await repo.where('NOT EXISTS (SELECT * FROM callbacks c WHERE c.checkout_request_id = requests.checkout_request_id)').getMany();
