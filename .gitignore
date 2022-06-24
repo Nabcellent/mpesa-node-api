@@ -16,3 +16,4 @@ logs
 .env
 dist
 yarn.lock
+y.hide
