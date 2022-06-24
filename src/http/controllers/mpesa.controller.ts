@@ -2,6 +2,7 @@ import { StkRequest } from '../../entities/models/StkRequest';
 import { AppDataSource } from '../../entities/data-source';
 import { STK } from '../../repositories/STK';
 import { StkCallback } from '../../entities/models/StkCallback';
+import { Request } from 'express';
 
 export const MpesaController = {
     index: async (req, res) => {
@@ -37,6 +38,12 @@ export const MpesaController = {
         console.log('Stk Callback:', callback);
 
         res.send({});
+    },
+
+    queryRequest: async ({body}: Request, res) => {
+        const status = await STK.status(body.checkout_request_id);
+
+        res.send(status)
     },
 
     queryStkStatus: async (req, res) => {

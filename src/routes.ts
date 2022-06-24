@@ -11,9 +11,9 @@ router.group('/mpesa', router => {
 
     router.post('/initiate-stk', validate(MpesaRequest.initiateStk), MpesaController.initiateStk);
     router.post('/stk-callback', MpesaController.stkCallback);
-    router.post('/query-status', validate(MpesaRequest.queryStatus), MpesaController.queryStkStatus);
+    router.post('/query-request', validate(MpesaRequest.queryStatus), MpesaController.queryRequest);
 
-    router.get('/query-stk-status', MpesaController.queryStkStatus);
+    router.get('/query-statuses', MpesaController.queryStkStatus);
 });
 
 export default router.export();
