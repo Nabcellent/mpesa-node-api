@@ -19,7 +19,7 @@ export class StkCallback extends BaseEntity {
     @Column({type: 'integer', default: 0})
     amount: number;
 
-    // specify inverse side as a second parameter
     @OneToOne(() => StkRequest, request => request.callback) // specify inverse side as a second parameter
+    @JoinColumn({referencedColumnName: 'checkout_request_id'})
     request: StkRequest;
 }

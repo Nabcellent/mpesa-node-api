@@ -4,6 +4,12 @@ import { STK } from '../../repositories/STK';
 import { StkCallback } from '../../entities/models/StkCallback';
 
 export const MpesaController = {
+    index: async (req, res) => {
+        const requests = await StkRequest.find({relations: {callback: true}});
+
+        res.send(requests);
+    },
+
     initiateStk: async ({body}, res) => {
         const {phone, amount, reference, relation_id, description} = body;
 

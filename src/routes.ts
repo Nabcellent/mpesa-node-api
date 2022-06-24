@@ -7,9 +7,12 @@ import { MpesaRequest } from './http/requests/mpesa.request';
 const router = new RouteGroup('/', Router());
 
 router.group('/mpesa', router => {
+    router.get('/requests', MpesaController.index);
+
     router.post('/initiate-stk', validate(MpesaRequest.initiateStk), MpesaController.initiateStk);
     router.post('/stk-callback', MpesaController.stkCallback);
     router.post('/query-status', validate(MpesaRequest.queryStatus), MpesaController.queryStkStatus);
+
     router.get('/query-stk-status', MpesaController.queryStkStatus);
 });
 
