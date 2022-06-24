@@ -19,16 +19,16 @@ export const MpesaController = {
     },
 
     stkCallback: async ({body}, res) => {
-        console.log('Callback 2: ', body);
-
         const {Body: {stkCallback}} = body;
 
-        await StkCallback.save({
+        const callback = await StkCallback.save({
             checkout_request_id: stkCallback.CheckoutRequestID,
             merchant_request_id: stkCallback.MerchantRequestID,
             result_code        : stkCallback.ResultCode,
             result_desc        : stkCallback.ResultDesc,
         });
+
+        console.log('Stk Callback:', callback);
 
         res.send({});
     },
