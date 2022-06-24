@@ -5,7 +5,7 @@ import { StkCallback } from '../../entities/models/StkCallback';
 
 export const MpesaController = {
     index: async (req, res) => {
-        const requests = await StkRequest.find({relations: {callback: true}});
+        const requests = await StkRequest.find({order: {id: 'DESC'}, relations: {callback: true}});
 
         res.send(requests);
     },
