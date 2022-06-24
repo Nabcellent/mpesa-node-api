@@ -56,7 +56,13 @@ export class STK {
         } catch (err) {
             console.log('MpesaError: ', err);
 
-            log.error(err.data.errorCode ? err.data : err.message);
+            if(err.data.errorCode) {
+                log.error(err.data)
+
+                if(err.data.errorCode === '500.001.1001') return err.data
+            } else {
+                log.error(err.message)
+            }
 
             throw new Error(err.message);
         }
