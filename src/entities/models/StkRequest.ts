@@ -25,7 +25,8 @@ export class StkRequest extends BaseEntity {
     @Column()
     description: string;
 
-    @OneToOne(() => StkCallback, callback => callback.request) // specify inverse side as a second parameter
-    @JoinColumn({referencedColumnName:'checkout_request_id'})
+    // specify inverse side as a second parameter
+    @OneToOne(() => StkCallback, callback => callback.request)
+    @JoinColumn({name: 'checkout_request_id', referencedColumnName: 'checkout_request_id'})
     callback: StkCallback;
 }
