@@ -47,6 +47,7 @@ export const MpesaController = {
 
         stk.map(async request => {
             try {
+                console.log(request.checkout_request_id);
                 const status = await STK.status(request.checkout_request_id);
 
                 success.push({[request.checkout_request_id]: status.ResultDesc});
